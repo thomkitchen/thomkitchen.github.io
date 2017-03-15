@@ -1,2 +1,2 @@
 # thomkitchen.github.io
-UFC project
+Testing Git Pages
