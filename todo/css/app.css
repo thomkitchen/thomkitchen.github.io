@@ -1,0 +1,23 @@
+.list-container {
+	padding: 10px;
+}
+.list-container > div {
+	max-width: 640px;
+}
+
+.done {
+	text-decoration: line-through;
+	color: #aaa 
+}
+
+.clear-complete-btn {
+	margin-bottom: 10px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	border-top: 0px;
+	border-bottom: 1px solid #ccc;
+}
+.list-container h2 {
+	border-bottom: 2px solid #000;
+}

@@ -6,99 +6,77 @@
   <meta name="viewport"
      content="width=device-width, initial-scale=1, user-scalable=yes">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
-  
-  <style>
-    .done{ text-decoration: line-through; color: #aaa }
-  </style>
-  <script>
-   angular.module('ToDo', [])
-   .controller('todoController', function($scope) {
-       $scope.todos = [
-        { 'title':'Get something on the screen', 'done': false }
-       ];
-       $scope.addItem = function(){
-        $scope.todos.push({'title':$scope.newItem, 'done': false });
-        $scope.newItem = '';
-       }
-       $scope.clearCompleted = function(){
-        $scope.todos = $scope.todos.filter(function(item) {
-          return !item.done
-        })
-       };
-       $scope.itemComplete = function(){
-        console.log($scope.todos);
-
-       }
-   });
-  
-  </script>
+  <script src="js/app.js"></script>
  
 </head>
 <body>
-  <div class="list-container container" ng-app="ToDo" ng-controller="todoController">
-    <div class="row">
-      <h1>Item List</h1>
-      <div class="table-container">
-        <table class="table table-filter">
-          <tbody>
-            <tr ng-repeat="todo in todos | filter:{done:false} ">
-              <td>
-                <div class="ckbox">
-                  <input type="checkbox" ng-model="todo.done" ng-click="itemComplete()" />
-                  <label for="checkbox1"></label>
-                </div>
-              </td>
-              <td>
-                <div class="media">
-                  <div class="media-body">
-                    <h4 class="title">
-                      <span ng-class="{'done':todo.done}">{{todo.title}}</span>
-                    </h4>
+  <div class="list-container">
+    <div class="container" ng-app="ToDo" ng-controller="todoController">
+      <div class="row">
+        <h2>Item List</h2>
+        <div class="table-container">
+          <table class="table table-filter">
+            <tbody>
+              <tr ng-repeat="todo in todos | filter:{done:false} ">
+                <td>
+                  <div class="ckbox">
+                    <input type="checkbox" ng-model="todo.done" ng-click="itemComplete()" />
+                    <label for="checkbox1"></label>
                   </div>
-                </div>
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <form name ="frm" ng-submit="addItem()">
-      <input type="text" name="newItem" ng-model="newItem" required />
-      <button type="submit" class="btn btn-primary" ng-disabled="frm.$invalid">Add item</button>
-    </form>
-    <button ng-click="clearCompleted()">Clear Completed</button>
-
-    <div class="row">
-      <h2>Completed Items</h2>
-      <div class="table-container">
-        <table class="table table-filter">
-          <tbody>
-            <tr ng-repeat="todo in todos | filter:{done:true} ">
-              <td>
-                <div class="ckbox">
-                  <input type="checkbox" ng-model="todo.done" ng-click="restoreItem()" />
-                  <label for="checkbox1"></label>
-                </div>
-              </td>
-              <td>
-                <div class="media">
-                  <div class="media-body">
-                    <h4 class="title">
-                      <span ng-class="{'done':todo.done}">{{todo.title}}</span>
-                    </h4>
+                </td>
+                <td>
+                  <div class="media">
+                    <div class="media-body">
+                      <h4 class="title">
+                        <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+                      </h4>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
       </div>
-      
+
+      <form name ="frm" ng-submit="addItem()">
+        <input type="text" name="newItem" ng-model="newItem" required />
+        <button type="submit" class="btn btn-primary" ng-disabled="frm.$invalid">Add item</button>
+      </form>
+
+      <div class="row">
+        <h2>Completed Items</h2>
+        <div class="table-container">
+          <table class="table table-filter">
+            <tbody>
+              <tr ng-repeat="todo in todos | filter:{done:true} ">
+                <td>
+                  <div class="ckbox">
+                    <input type="checkbox" ng-model="todo.done" ng-click="restoreItem()" />
+                    <label for="checkbox1"></label>
+                  </div>
+                </td>
+                <td>
+                  <div class="media">
+                    <div class="media-body">
+                      <h4 class="title">
+                        <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+                      </h4>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-primary" ng-click="clearCompleted()">Clear Completed</button>
+        
+      </div>
     </div>
   </div>
  
